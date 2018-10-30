@@ -1,6 +1,6 @@
 {
         "counter": {
-                "title": "Bitcoin {{PI}} on {{HOST}}",
+                "title": "Groestlcoin {{PI}} on {{HOST}}",
                 "type": "io",
                 "legend": {
                         "getnettotals_totalbytesrecv": {
@@ -14,7 +14,7 @@
                 }
         },
         "gauge": {
-                "title": "Bitcoin {{PI}} on {{HOST}}",
+                "title": "Groestlcoin {{PI}} on {{HOST}}",
                 "type": "stacked",
                 "legend": {
                         "getblock_size":{

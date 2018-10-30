@@ -4,7 +4,7 @@
 # https://gist.github.com/C-Otto/a9e4864dff1a2b167761
 #
 # Biggest change is that it uses rpc connection instead of calling
-# bitcoin-cli binary and added some more stuff to log.
+# groestlcoin-cli binary and added some more stuff to log.
 
 import os
 import sys
@@ -14,7 +14,7 @@ from bitcoinrpc.authproxy import AuthServiceProxy
 
 hostname = os.environ['COLLECTD_HOSTNAME'] if 'COLLECTD_HOSTNAME' in os.environ else socket.getfqdn()
 interval = float(os.environ['COLLECTD_INTERVAL']) if 'COLLECTD_INTERVAL' in os.environ else 30
-authserv = "http://rpcuser:rpcpassword@127.0.0.1:8332"
+authserv = "http://rpcuser:rpcpassword@127.0.0.1:1441"
 
 def main():
     while True:
@@ -39,7 +39,7 @@ def main():
                     #without this it will appear "stacked" in CGP Panel
                     funccat = (str(funcname) + "_" + str(subkey))
                     printValue("gauge", funccat, funcname, subkey, value)
-                
+
                 #since 0.12 estimatefee 1 fails. Use estimatefee 2 instead.
                 #see https://github.com/bitcoin/bitcoin/issues/7545
                 function = access.estimatefee(2)
@@ -73,7 +73,7 @@ def main():
         time.sleep(interval)
 
 def printValue(dstype, funccat, function, subkey, value):
-        print('PUTVAL "%s/bitcoin-%s/%s-%s_%s" interval=%s N:%s' % (hostname, funccat, dstype, function, subkey, interval, value))
+        print('PUTVAL "%s/groestlcoin-%s/%s-%s_%s" interval=%s N:%s' % (hostname, funccat, dstype, function, subkey, interval, value))
 
 if __name__ == '__main__':
     main()
